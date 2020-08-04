@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManager.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,26 @@ namespace HotelManager
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void OrderList_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new OrdersListView();
+        }
+
+        private void AddOrder_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new AddOrderView();
+        }
+
+        private void AddClient_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new AddClientView();
+        }
+
+        private void ImportCsv_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new ImportCsvView();
         }
     }
 }

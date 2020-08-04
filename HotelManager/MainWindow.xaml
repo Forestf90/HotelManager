@@ -4,9 +4,57 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HotelManager"
+        xmlns:views="clr-namespace:HotelManager.Views"
+        xmlns:viewmodels="clr-namespace:HotelManager.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Hotel Manager" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Name="orderListTemplate" DataType="{x:Type viewmodels:OrdersListViewModel}">
+            <views:OrdersListView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="orderAddTemplate" DataType="{x:Type viewmodels:OrderAddViewModel}">
+            <views:AddOrderView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="clientAddTemplate" DataType="{x:Type viewmodels:ClientAddViewModel}">
+            <views:AddClientView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="importCsvTemplate" DataType="{x:Type viewmodels:CsvImportViewModel}">
+            <views:ImportCsvView DataContext="{Binding}"/>
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Background="#FF8CABD1" Grid.Column="0">
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Margin" Value="10,10,10,10"/>
+                        <Setter Property="Background" Value="#FF5FA6E2"/>
+                        <Setter Property="FontSize" Value="18"/>
+                        <Setter Property="FontFamily" Value="Bahnschrift Condensed"/>
+                        <Setter Property="BorderBrush" Value="#FF004C80"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                    </Style>
+                </StackPanel.Resources>
+
+                <Button Content="Orders List" Click="OrderList_Click"/>
+                <Button Content="Add Order" Click="AddOrder_Click"/>
+                <Button Content="Add Client" Click="AddClient_Click"/>
+                <Button Content="Import CSV" Click="ImportCsv_Click"/>
+            </StackPanel>
+        </DockPanel>
+        <ContentControl Grid.Column="1" Grid.ColumnSpan="4" Content="{Binding}" />
 
     </Grid>
+
+    
+    
 </Window>
