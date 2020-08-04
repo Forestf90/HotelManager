@@ -8,9 +8,15 @@
       d:DesignHeight="450" d:DesignWidth="800">
 
     <DockPanel>
-        <DataGrid x:Name="ordersDataGrid" AutoGenerateColumns="False" ColumnWidth="*">
+        <DataGrid x:Name="ordersDataGrid" AutoGenerateColumns="False" ColumnWidth="Auto" ItemsSource="{Binding Orders}" IsReadOnly="True">
             <DataGrid.Columns>
-                <!--<DataGridTextColumn Header="Room number" Binding="{Binding id}"/>-->
+                <DataGridTextColumn Header="Room Nr" Binding="{Binding RoomNumber}"/>
+                <DataGridTextColumn Header="Floor" Binding="{Binding Floor}"/>
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="Book In" Binding="{Binding BookIn, StringFormat=dd-MM-yyyy}"/>
+                <DataGridTextColumn Header="Book Out" Binding="{Binding BookOut, StringFormat=dd-MM-yyyy}"/>
+                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.HeaderTemplate>
                         <DataTemplate>
@@ -20,7 +26,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button x:Name="orderDelete" Content="Insert" Click="orderDelete_Click" />
+                                <Button x:Name="orderDelete" Content="Delete" Click="orderDelete_Click" />
                                 <Button x:Name="orderUpdate" Content="Update" Click="orderUpdate_Click" />
                             </StackPanel>
                         </DataTemplate>
