@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:HotelManager.Views"
         xmlns:viewmodels="clr-namespace:HotelManager.ViewModels"
         mc:Ignorable="d"
-        Title="Hotel Manager" Height="450" Width="800">
+        Title="Hotel Manager" Height="450" Width="800" MinWidth="350" MinHeight="350">
     <Window.Resources>
         <DataTemplate x:Name="orderListTemplate" DataType="{x:Type viewmodels:OrdersListViewModel}">
             <views:OrdersListView DataContext="{Binding}"/>
@@ -22,8 +22,8 @@
             <views:ImportCsvView DataContext="{Binding}"/>
         </DataTemplate>
     </Window.Resources>
-    
-    <Grid>
+
+    <Grid Background="#FF223042">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
@@ -32,26 +32,15 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <DockPanel Background="#FF8CABD1" Grid.Column="0">
+        <DockPanel Grid.Column="0" Background="#FF8CABD1">
             <StackPanel>
-                <StackPanel.Resources>
-                    <Style TargetType="{x:Type Button}">
-                        <Setter Property="Margin" Value="10,10,10,10"/>
-                        <Setter Property="Background" Value="#FF5FA6E2"/>
-                        <Setter Property="FontSize" Value="18"/>
-                        <Setter Property="FontFamily" Value="Bahnschrift Condensed"/>
-                        <Setter Property="BorderBrush" Value="#FF004C80"/>
-                        <Setter Property="BorderThickness" Value="2"/>
-                    </Style>
-                </StackPanel.Resources>
-
                 <Button Content="Orders List" Click="OrderList_Click"/>
                 <Button Content="Add Order" Click="AddOrder_Click"/>
                 <Button Content="Add Client" Click="AddClient_Click"/>
                 <Button Content="Import CSV" Click="ImportCsv_Click"/>
             </StackPanel>
         </DockPanel>
-        <ContentControl Grid.Column="1" Grid.ColumnSpan="4" Content="{Binding}" />
+        <ContentControl Margin="20" Grid.Column="1" Grid.ColumnSpan="4" Content="{Binding}" />
 
     </Grid>
 

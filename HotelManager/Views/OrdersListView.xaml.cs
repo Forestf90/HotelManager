@@ -22,5 +22,15 @@ namespace HotelManager.Views
         {
             InitializeComponent();
         }
+
+        private void orderDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void orderUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

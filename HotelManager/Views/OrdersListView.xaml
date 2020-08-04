@@ -7,8 +7,26 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid>
-        <Label Content="Order list" />
-
-    </Grid>
+    <DockPanel>
+        <DataGrid x:Name="ordersDataGrid" AutoGenerateColumns="False" ColumnWidth="*">
+            <DataGrid.Columns>
+                <!--<DataGridTextColumn Header="Room number" Binding="{Binding id}"/>-->
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Action" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="orderDelete" Content="Insert" Click="orderDelete_Click" />
+                                <Button x:Name="orderUpdate" Content="Update" Click="orderUpdate_Click" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
 </UserControl>

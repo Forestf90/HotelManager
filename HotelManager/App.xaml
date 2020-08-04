@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:HotelManager"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="10,10,10,10"/>
+            <Setter Property="Background" Value="#FF5FA6E2"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontFamily" Value="Bahnschrift Condensed"/>
+            <Setter Property="BorderBrush" Value="#FF004C80"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
     </Application.Resources>
 </Application>
