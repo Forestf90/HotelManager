@@ -9,7 +9,7 @@ namespace HotelManager.Models
         public int Number { get; set; }
         public int Floor { get; set; }
         public string Type { get; set; }
-        public decimal Size { get; set; }
+        public double Size { get; set; }
         public int Beds { get; set; }
         public decimal Price { get; set; }
 

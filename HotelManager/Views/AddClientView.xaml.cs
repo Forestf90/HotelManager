@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManager.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,12 @@ namespace HotelManager.Views
         public AddClientView()
         {
             InitializeComponent();
+            DataContext = new ClientAddViewModel();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

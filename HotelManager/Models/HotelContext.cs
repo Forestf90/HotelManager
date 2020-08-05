@@ -32,8 +32,6 @@ namespace HotelManager.Models
         {
             modelBuilder.Entity<Client>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(30)
@@ -57,7 +55,7 @@ namespace HotelManager.Models
 
             modelBuilder.Entity<Order>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.BookIn).HasColumnType("datetime");
 
@@ -80,11 +78,7 @@ namespace HotelManager.Models
 
             modelBuilder.Entity<Room>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Price).HasColumnType("money");
-
-                entity.Property(e => e.Size).HasColumnType("decimal(3, 2)");
 
                 entity.Property(e => e.Type)
                     .IsRequired()

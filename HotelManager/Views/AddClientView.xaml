@@ -7,8 +7,41 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid>
-        <Label Content="Add lient" />
+    <Grid Background="#FF8CABD1" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Label Content="Add new client" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" FontSize="24" HorizontalAlignment="Center"/>
+        <Label Content="First Name:" Grid.Row="1" Grid.Column="0"/>
+        <Label Content="Last Name:" Grid.Row="2" Grid.Column="0"/>
+        <Label Content="Email:" Grid.Row="3" Grid.Column="0"/>
+        <Label Content="Phone number:" Grid.Row="4" Grid.Column="0"/>
+
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding FirstName, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+                     Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding LastName, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+                     Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  Text="{Binding Email, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+                     Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Phone, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+                     Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
+
+        <Button Content="Add" Grid.Column="3" Grid.Row="5" Click="Button_Click" />
 
     </Grid>
+
+   
+    
 </UserControl>

@@ -8,7 +8,9 @@
       d:DesignHeight="450" d:DesignWidth="800">
 
     <DockPanel>
-        <DataGrid x:Name="ordersDataGrid" AutoGenerateColumns="False" ColumnWidth="Auto" ItemsSource="{Binding Orders}" IsReadOnly="True">
+        <DataGrid x:Name="ordersDataGrid" AutoGenerateColumns="False" ColumnWidth="Auto" ItemsSource="{Binding Orders}" 
+                  IsReadOnly="True" Background="#FF8CABD1" HeadersVisibility="Column"
+                  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Room Nr" Binding="{Binding RoomNumber}"/>
                 <DataGridTextColumn Header="Floor" Binding="{Binding Floor}"/>
