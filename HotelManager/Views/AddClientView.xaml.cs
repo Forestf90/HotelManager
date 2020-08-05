@@ -1,4 +1,5 @@
-﻿using HotelManager.ViewModels;
+﻿using HotelManager.Models;
+using HotelManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,7 +28,47 @@ namespace HotelManager.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (IsValid(this))
+            {
+                string firstName = FirstNameText.Text;
+                string lastName = LastNameText.Text;
+                string email = EmailText.Text;
+                string phone = PhoneText.Text;
 
+                if(!String.IsNullOrEmpty(firstName) && !String.IsNullOrEmpty(lastName) &&
+                    !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(phone))
+                {
+                    using(HotelContext hc = new HotelContext())
+                    {
+                        hc.Client.Add(new Client
+                        {
+                            FirstName = firstName,
+                            LastName = lastName,
+                            Email = email,
+                            Phone = phone
+                        });
+
+                        hc.SaveChanges();
+                    }
+                    MessageBox.Show("Client added");
+
+                }
+            }
+
+        }
+
+        public static bool IsValid(DependencyObject parent)
+        {
+            if (Validation.GetHasError(parent))
+                return false;
+
+            for (int i = 0; i != VisualTreeHelper.GetChildrenCount(parent); ++i)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+                if (!IsValid(child)) { return false; }
+            }
+
+            return true;
         }
     }
 }

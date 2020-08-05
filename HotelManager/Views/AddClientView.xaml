@@ -29,16 +29,16 @@
         <Label Content="Email:" Grid.Row="3" Grid.Column="0"/>
         <Label Content="Phone number:" Grid.Row="4" Grid.Column="0"/>
 
-        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding FirstName, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox x:Name="FirstNameText" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding FirstName, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
                      Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding LastName, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox x:Name="LastNameText" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding LastName, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
                      Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  Text="{Binding Email, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox x:Name="EmailText"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  Text="{Binding Email, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
                      Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
-        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Phone, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox x:Name="PhoneText" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Phone, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
                      Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
 
-        <Button Content="Add" Grid.Column="3" Grid.Row="5" Click="Button_Click" />
+        <Button Content="Add" Grid.Column="3" Grid.Row="5" Click="Button_Click"/>
 
     </Grid>
 

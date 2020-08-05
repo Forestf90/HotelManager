@@ -36,6 +36,18 @@
             <Setter Property="FontFamily" Value="Bahnschrift Condensed"/>
             <Setter Property="Padding" Value="8"/>
             <Setter Property="Margin" Value="8"/>
+            <Setter Property="TextWrapping" Value="NoWrap" />
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontFamily" Value="Bahnschrift Condensed"/>
+            <Setter Property="Margin" Value="8"/>
+        </Style>
+        <Style TargetType="{x:Type DatePicker}">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontFamily" Value="Bahnschrift Condensed"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="MinHeight" Value="24" />
         </Style>
 
         <ControlTemplate x:Key="errorTemplate">

@@ -8,6 +8,7 @@ namespace HotelManager.ViewModels
 {
     class ClientAddViewModel : ObservableObject
     {
+        
         private string _firstName;
 
         [Required(ErrorMessage ="Field cannot be empty")]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,21 @@ namespace HotelManager.Views
         public ImportCsvView()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog csvFielDialog = new OpenFileDialog();
+            csvFielDialog.Filter = "CSF files(*.csv)|*.csv";
+
+            bool? result = csvFielDialog.ShowDialog();
+
+            if (result.HasValue && result.Value)
+            {
+                int count = 0;
+
+                MessageBox.Show(csvFielDialog.FileName);
+            }
         }
     }
 }

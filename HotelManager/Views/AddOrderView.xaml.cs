@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManager.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,11 @@ namespace HotelManager.Views
         public AddOrderView()
         {
             InitializeComponent();
+            DataContext = new OrderAddViewModel();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

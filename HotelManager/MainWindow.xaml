@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:HotelManager.Views"
         xmlns:viewmodels="clr-namespace:HotelManager.ViewModels"
         mc:Ignorable="d"
-        Title="Hotel Manager" Height="450" Width="800" MinWidth="350" MinHeight="350">
+        Title="Hotel Manager" Height="550" Width="800" MinWidth="450" MinHeight="550">
     <Window.Resources>
         <DataTemplate x:Name="orderListTemplate" DataType="{x:Type viewmodels:OrdersListViewModel}">
             <views:OrdersListView DataContext="{Binding}"/>
