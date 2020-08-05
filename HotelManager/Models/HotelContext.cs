@@ -34,44 +34,38 @@ namespace HotelManager.Models
             {
                 entity.Property(e => e.Email)
                     .IsRequired()
-                    .HasMaxLength(30)
-                    .IsFixedLength();
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
-                    .HasMaxLength(20)
-                    .IsFixedLength();
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.LastName)
                     .IsRequired()
-                    .HasMaxLength(20)
-                    .IsFixedLength();
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Phone)
                     .IsRequired()
-                    .HasMaxLength(11)
-                    .IsFixedLength();
+                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<Order>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
                 entity.Property(e => e.BookIn).HasColumnType("datetime");
 
                 entity.Property(e => e.BookOut).HasColumnType("datetime");
 
                 entity.Property(e => e.Price).HasColumnType("money");
 
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.Order)
-                    .HasForeignKey<Order>(d => d.Id)
+                entity.HasOne(d => d.Client)
+                    .WithMany(p => p.Order)
+                    .HasForeignKey(d => d.ClientId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Order_Client");
 
-                entity.HasOne(d => d.Id1)
-                    .WithOne(p => p.Order)
-                    .HasForeignKey<Order>(d => d.Id)
+                entity.HasOne(d => d.Room)
+                    .WithMany(p => p.Order)
+                    .HasForeignKey(d => d.RoomId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Order_Room");
             });
@@ -82,8 +76,7 @@ namespace HotelManager.Models
 
                 entity.Property(e => e.Type)
                     .IsRequired()
-                    .HasMaxLength(40)
-                    .IsFixedLength();
+                    .HasMaxLength(50);
             });
 
             OnModelCreatingPartial(modelBuilder);

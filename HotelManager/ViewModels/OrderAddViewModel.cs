@@ -1,4 +1,5 @@
-﻿using HotelManager.Models;
+﻿using HotelManager.HelpModels;
+using HotelManager.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,12 +8,12 @@ using System.Text;
 
 namespace HotelManager.ViewModels
 {
-    class OrderAddViewModel
+    class OrderAddViewModel : ObservableObject
     {
 
-        public IEnumerable<Room> RoomsList { get; set; }
+        public IEnumerable<Room> RoomsList { get; private set; }
 
-        public IEnumerable<Client> Clients { get; set; }
+        public IEnumerable<Client> Clients { get; private set; }
 
         public OrderAddViewModel()
         {
@@ -20,19 +21,87 @@ namespace HotelManager.ViewModels
             GetRooms();
         }
 
-        [Required(ErrorMessage = "Field cannot be empty")]
-        public Room Room { get; set; }
-
-        private DateTime _bookIn;
+        private int _room;
 
         [Required(ErrorMessage = "Field cannot be empty")]
-        public DateTime BookIn;
+        public int Room 
+        {
+            get { return _room; }
+            set
+            {
+                ValidationProperty(value, "Room");
+                OnPropertyChanged(ref _room, value);
+            }
+        }
 
-
-        private DateTime _bookOut;
+        private string _client;
 
         [Required(ErrorMessage = "Field cannot be empty")]
-        public DateTime BookOut;
+        public string Client
+        {
+            get { return _client; }
+            set
+            {
+                ValidationProperty(value, "Client");
+                OnPropertyChanged(ref _client, value);
+            }
+        }
+
+        private int _guests;
+
+        [Required(ErrorMessage = "Field cannot be empty")]
+        [RegularExpression("[0-9]+", ErrorMessage = "Only digits")]
+        public int Guests
+        {
+            get { return _guests; }
+            set
+            {
+                ValidationProperty(value, "Guests");
+                OnPropertyChanged(ref _guests, value);
+            }
+        }
+
+        private float _price;
+
+        [Required(ErrorMessage = "Field cannot be empty")]
+        [Range(1, float.MaxValue, ErrorMessage = "Enter positive value")]
+        public float Price
+        {
+            get { return _price; }
+            set
+            {
+                ValidationProperty(value, "Price");
+                OnPropertyChanged(ref _price, value);
+            }
+        }
+
+
+        private DateTime _bookIn = DateTime.Today;
+
+        [Required(ErrorMessage = "Field cannot be empty")]
+        public DateTime BookIn 
+        {
+            get { return _bookIn; }
+            set
+            {
+                ValidationProperty(value, "BookIn");
+                OnPropertyChanged(ref _bookIn, value);
+            }
+        }
+
+
+        private DateTime _bookOut = DateTime.Today.AddDays(1);
+
+        [Required(ErrorMessage = "Field cannot be empty")]
+        public DateTime BookOut
+        {
+            get { return _bookOut; }
+            set
+            {
+                ValidationProperty(value, "BookOut");
+                OnPropertyChanged(ref _bookOut, value);
+            }
+        }
 
         private void GetRooms()
         {
@@ -44,11 +113,20 @@ namespace HotelManager.ViewModels
 
         private void GetClients()
         {
-            using(HotelContext hc = new HotelContext())
+            using (HotelContext hc = new HotelContext())
             {
                 Clients = hc.Client.ToList();
             }
         }
+
+        private void ValidationProperty<T>(T value, string name)
+        {
+            Validator.ValidateProperty(value, new ValidationContext(this)
+            {
+                MemberName = name
+            });
+        }
+
 
     }
 }

@@ -5,6 +5,11 @@ namespace HotelManager.Models
 {
     public partial class Room
     {
+        public Room()
+        {
+            Order = new HashSet<Order>();
+        }
+
         public int Id { get; set; }
         public int Number { get; set; }
         public int Floor { get; set; }
@@ -13,6 +18,6 @@ namespace HotelManager.Models
         public int Beds { get; set; }
         public decimal Price { get; set; }
 
-        public virtual Order Order { get; set; }
+        public virtual ICollection<Order> Order { get; set; }
     }
 }

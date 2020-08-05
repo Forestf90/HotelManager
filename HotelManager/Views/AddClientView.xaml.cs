@@ -35,10 +35,10 @@ namespace HotelManager.Views
                 string email = EmailText.Text;
                 string phone = PhoneText.Text;
 
-                if(!String.IsNullOrEmpty(firstName) && !String.IsNullOrEmpty(lastName) &&
+                if (!String.IsNullOrEmpty(firstName) && !String.IsNullOrEmpty(lastName) &&
                     !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(phone))
                 {
-                    using(HotelContext hc = new HotelContext())
+                    using (HotelContext hc = new HotelContext())
                     {
                         hc.Client.Add(new Client
                         {

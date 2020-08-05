@@ -1,6 +1,9 @@
-﻿using HotelManager.ViewModels;
+﻿using HotelManager.HelpModels;
+using HotelManager.Models;
+using HotelManager.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,6 +30,19 @@ namespace HotelManager.Views
 
         private void orderDelete_Click(object sender, RoutedEventArgs e)
         {
+            DisplayOrderModel selected = (DisplayOrderModel)ordersDataGrid.SelectedItem;
+
+            using (HotelContext hc = new HotelContext())
+            {
+                Room r = hc.Room.Where(x => x.Number == selected.RoomNumber).FirstOrDefault();
+
+
+                var delete = hc.Order.Where(x => x.BookIn == selected.BookIn)
+                                    .Where(z => z.RoomId == r.Id).FirstOrDefault();
+                hc.Order.Remove(delete);
+                hc.SaveChanges();
+                DataContext = new OrdersListViewModel();
+            }
 
         }
 

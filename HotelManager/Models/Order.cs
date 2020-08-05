@@ -13,7 +13,7 @@ namespace HotelManager.Models
         public int GuestsNumber { get; set; }
         public decimal Price { get; set; }
 
-        public virtual Room Id1 { get; set; }
-        public virtual Client IdNavigation { get; set; }
+        public virtual Client Client { get; set; }
+        public virtual Room Room { get; set; }
     }
 }

@@ -33,22 +33,29 @@
         <Label Content="Book in:" Grid.Row="5" Grid.Column="0"/>
         <Label Content="Book out:" Grid.Row="6" Grid.Column="0"/>
 
-        <ComboBox ItemsSource="{Binding RoomsList}"
+        <ComboBox x:Name="RoomCombo" ItemsSource="{Binding RoomsList}"
                   SelectedItem="{Binding Room}"
                   DisplayMemberPath="Number"
-                   Grid.Column="1" Grid.Row="1"
-                  Grid.ColumnSpan="2"/>
-        <ComboBox ItemsSource="{Binding Path=Clients}"
+                  Grid.Column="1" Grid.Row="1"
+                  Grid.ColumnSpan="2"
+                  Text="{Binding Room, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+                     Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
+        <ComboBox x:Name="ClientCombo" ItemsSource="{Binding Path=Clients}"
+                  SelectedItem="{Binding Client}"
                   DisplayMemberPath="Email"
                   Grid.Column="1" Grid.Row="2"
-                  Grid.ColumnSpan="2"/>
+                  Grid.ColumnSpan="2"
+                  Text="{Binding Client, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+                     Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
 
-        <TextBox x:Name="EmailText"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  Text="{Binding Email, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox x:Name="GuestText"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  Text="{Binding Guests, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
                      Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
-        <TextBox x:Name="PhoneText" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Phone, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox x:Name="PriceText" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Price, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
                      Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
-        <DatePicker Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"></DatePicker>
-        <DatePicker Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"></DatePicker>
+        <DatePicker x:Name="DateIn" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding BookIn, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+                     Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
+        <DatePicker x:Name="DateOut" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding BookOut, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+                     Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
 
         <Button Content="Add" Grid.Column="3" Grid.Row="7" Click="Button_Click"/>
     </Grid>

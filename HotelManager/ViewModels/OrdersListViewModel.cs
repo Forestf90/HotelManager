@@ -1,37 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using HotelManager.HelpModels;
+using HotelManager.Models;
 
 namespace HotelManager.ViewModels
 {
     class OrdersListViewModel
     {
-        private IList<DisplayOrderModel> _ordersList;
+        private List<DisplayOrderModel> _ordersList;
 
         public OrdersListViewModel()
         {
-            _ordersList = new List<DisplayOrderModel>
-            {
-                new DisplayOrderModel
-                {
-                    RoomNumber = 3, BookIn = DateTime.Now, BookOut = DateTime.Now, Floor=5, Type="with single bathroom", FirstName="Michal", LastName="Sliwa"
-                },
-                new DisplayOrderModel
-                {
-                    RoomNumber = 35, BookIn = DateTime.Now, BookOut = DateTime.Now, Floor=5, Type="with singthroom", FirstName="lukasz", LastName="Slsdfgiwa"
-                },
-                new DisplayOrderModel
-                {
-                    RoomNumber = 5, BookIn = DateTime.Now, BookOut = DateTime.Now, Floor=2, Type="we bathroit", FirstName="Kamil", LastName="dsfg"
-                },
-                new DisplayOrderModel
-                {
-                    RoomNumber = 43, BookIn = DateTime.Now, BookOut = DateTime.Now, Floor=5, Type="no bathroom", FirstName="gty", LastName="sfd"
-                }
-            };
+            _ordersList = new List<DisplayOrderModel>();
+            GetOrders();
         }
-        public IList<DisplayOrderModel> Orders 
+
+        private void GetOrders()
+        {
+            using (HotelContext hc = new HotelContext())
+            {
+                var tempList = hc.Order.Where(x => x.BookIn > DateTime.Now).ToList();
+                foreach (var o in tempList)
+                {
+                    Client c = hc.Client.Where(x => x.Id == o.ClientId).FirstOrDefault();
+                    Room r = hc.Room.Where(x => x.Id == o.RoomId).FirstOrDefault();
+
+                    Orders.Add(new DisplayOrderModel
+                    {
+                        RoomNumber = r.Number,
+                        BookIn = o.BookIn,
+                        BookOut = o.BookOut,
+                        Floor = r.Floor,
+                        Type = r.Type,
+                        FirstName = c.FirstName,
+                        LastName = c.LastName
+
+                    });
+                }
+            }
+        }
+        public List<DisplayOrderModel> Orders 
         {
             get { return _ordersList; }
             set { _ordersList = value; }

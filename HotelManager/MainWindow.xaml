@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:HotelManager.Views"
         xmlns:viewmodels="clr-namespace:HotelManager.ViewModels"
         mc:Ignorable="d"
-        Title="Hotel Manager" Height="550" Width="800" MinWidth="450" MinHeight="550">
+        Title="Hotel Manager" Height="550" Width="900" MinWidth="550" MinHeight="550">
     <Window.Resources>
         <DataTemplate x:Name="orderListTemplate" DataType="{x:Type viewmodels:OrdersListViewModel}">
             <views:OrdersListView DataContext="{Binding}"/>
@@ -34,7 +34,7 @@
 
         <DockPanel Grid.Column="0" Background="#FF8CABD1">
             <StackPanel>
-                <Button Content="Orders List" Click="OrderList_Click"/>
+                <Button Content="Upcoming orders" Click="OrderList_Click"/>
                 <Button Content="Add Order" Click="AddOrder_Click"/>
                 <Button Content="Add Client" Click="AddClient_Click"/>
                 <Button Content="Import CSV" Click="ImportCsv_Click"/>
