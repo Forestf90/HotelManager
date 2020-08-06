@@ -3,51 +3,17 @@ using HotelManager.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
 
 namespace HotelManager.ViewModels
 {
-    class OrderAddViewModel : ObservableObject
+    class OrderUpdateViewModel : ObservableObject
     {
 
-        public IEnumerable<Room> RoomsList { get; private set; }
-
-        public IEnumerable<Client> Clients { get; private set; }
-
-        public OrderAddViewModel()
+     
+        public OrderUpdateViewModel(Order update)
         {
-            GetClients();
-            GetRooms();
-            _bookIn = DateTime.Today;
-            _bookOut = DateTime.Today.AddDays(1);
-        }
-
-
-        private int _room;
-
-        [Required(ErrorMessage = "Field cannot be empty")]
-        public int Room 
-        {
-            get { return _room; }
-            set
-            {
-                ValidationProperty(value, "Room");
-                OnPropertyChanged(ref _room, value);
-            }
-        }
-
-        private string _client;
-
-        [Required(ErrorMessage = "Field cannot be empty")]
-        public string Client
-        {
-            get { return _client; }
-            set
-            {
-                ValidationProperty(value, "Client");
-                OnPropertyChanged(ref _client, value);
-            }
+            FillUpdate(update);
         }
 
         private int _guests;
@@ -82,7 +48,7 @@ namespace HotelManager.ViewModels
         private DateTime _bookIn;
 
         [Required(ErrorMessage = "Field cannot be empty")]
-        public DateTime BookIn 
+        public DateTime BookIn
         {
             get { return _bookIn; }
             set
@@ -106,30 +72,14 @@ namespace HotelManager.ViewModels
             }
         }
 
-        private void GetRooms()
-        {
-            using (HotelContext hc = new HotelContext())
-            {
-                RoomsList = hc.Room.ToList();
-            }
-        }
-
-        private void GetClients()
-        {
-            using (HotelContext hc = new HotelContext())
-            {
-                Clients = hc.Client.ToList();
-            }
-        }
-
         private void FillUpdate(Order or)
         {
             _bookOut = or.BookOut;
             BookIn = or.BookIn;
             Guests = or.GuestsNumber;
-            Price = (float) or.Price;
+            Price = (float)or.Price;
 
-        } 
+        }
 
         private void ValidationProperty<T>(T value, string name)
         {
@@ -138,7 +88,6 @@ namespace HotelManager.ViewModels
                 MemberName = name
             });
         }
-
 
     }
 }

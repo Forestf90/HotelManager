@@ -52,9 +52,9 @@
                      Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
         <TextBox x:Name="PriceText" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Price, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
                      Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
-        <DatePicker x:Name="DateInPic" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding BookIn, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+        <DatePicker x:Name="DateInPic" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding BookIn, StringFormat=dd-MM-yyyy, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
                      Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
-        <DatePicker x:Name="DateOutPic" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding BookOut, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+        <DatePicker x:Name="DateOutPic" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding BookOut, StringFormat=dd-MM-yyyy, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
                      Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
 
         <Button x:Name="buttonAdd" Content="Add" Grid.Column="3" Grid.Row="7" Click="Button_Click"/>

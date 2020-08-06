@@ -7,13 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace HotelManager.Views
 {
@@ -22,23 +17,14 @@ namespace HotelManager.Views
     /// </summary>
     public partial class AddOrderView : UserControl
     {
-        private Order update;
+       
         public AddOrderView()
         {
             InitializeComponent();  
             DataContext = new OrderAddViewModel();
         }
 
-        public AddOrderView(Order or, string email, Room number)
-        {
-            InitializeComponent();
-            update = or;
-            DataContext = new OrderAddViewModel(or, email, number);
-            buttonAdd.Content = "Update";
-            DateInPic.SelectedDate = or.BookIn;
-            DateOutPic.SelectedDate = or.BookOut;
-            RoomCombo.SelectedItem = number;
-        }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -68,14 +54,17 @@ namespace HotelManager.Views
                         return;
                     }
 
+
+
                     int isFree = hc.Order.Where(x => x.RoomId == tempRoom.Id)
-                                        .Where(z => 
+                                        .Where(z =>
                                         (
                                         (z.BookIn >= dateIn && z.BookIn < dateOut) ||
                                         (z.BookOut <= dateOut && z.BookOut > dateIn) ||
                                         (z.BookIn <= dateIn && z.BookOut > dateOut)
                                         ))
-                                        .ToList().Count();
+                                        .ToList().Count();                    
+
                     if (isFree > 0)
                     {
                         MessageBox.Show($"This room is already booked", "Error");
@@ -97,11 +86,13 @@ namespace HotelManager.Views
                     };
 
                     hc.Order.Add(temp);
+
                    
 
                     hc.SaveChanges();
                 }
                 MessageBox.Show("Order added");
+
 
 
             }

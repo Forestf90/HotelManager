@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="HotelManager.Views.UpdateOrderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HotelManager.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="#FF8CABD1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+
+        </Grid.RowDefinitions>
+
+        <Label Content="Update order" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" FontSize="24" HorizontalAlignment="Center"/>
+        <Label Content="Guests:" Grid.Row="1" Grid.Column="0"/>
+        <Label Content="Price:" Grid.Row="2" Grid.Column="0"/>
+        <Label Content="Book in:" Grid.Row="3" Grid.Column="0"/>
+        <Label Content="Book out:" Grid.Row="4" Grid.Column="0"/>
+
+
+        <TextBox x:Name="GuestTextU"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  Text="{Binding Guests, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+                     Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
+        <TextBox x:Name="PriceTextU" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Price, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+                     Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
+        <DatePicker x:Name="DateInPicU" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding BookIn, StringFormat=dd-MM-yyyy, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+                     Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
+        <DatePicker x:Name="DateOutPicU" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding BookOut, StringFormat=dd-MM-yyyy, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+                     Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
+
+        <Button x:Name="buttonUpdate" Content="Update" Grid.Column="3" Grid.Row="5" Click="buttonUpdate_Click"/>
+    </Grid>
+</UserControl>

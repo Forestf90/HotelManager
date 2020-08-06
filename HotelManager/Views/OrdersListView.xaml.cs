@@ -62,7 +62,7 @@ namespace HotelManager.Views
 
                 Window shell = Application.Current.MainWindow;
 
-                shell.DataContext = new AddOrderView(update, client.Email, r);
+                shell.DataContext = new UpdateOrderView(update);
 
             }
         }
