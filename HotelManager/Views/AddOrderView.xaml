@@ -33,7 +33,7 @@
         <Label Content="Book in:" Grid.Row="5" Grid.Column="0"/>
         <Label Content="Book out:" Grid.Row="6" Grid.Column="0"/>
 
-        <ComboBox x:Name="RoomCombo" ItemsSource="{Binding RoomsList}"
+        <ComboBox x:Name="RoomCombo" ItemsSource="{Binding Path=RoomsList}"
                   SelectedItem="{Binding Room}"
                   DisplayMemberPath="Number"
                   Grid.Column="1" Grid.Row="1"
@@ -52,11 +52,11 @@
                      Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
         <TextBox x:Name="PriceText" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Price, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
                      Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
-        <DatePicker x:Name="DateIn" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding BookIn, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+        <DatePicker x:Name="DateInPic" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding BookIn, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
                      Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
-        <DatePicker x:Name="DateOut" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding BookOut, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+        <DatePicker x:Name="DateOutPic" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding BookOut, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
                      Validation.ErrorTemplate="{StaticResource errorTemplate}"/>
 
-        <Button Content="Add" Grid.Column="3" Grid.Row="7" Click="Button_Click"/>
+        <Button x:Name="buttonAdd" Content="Add" Grid.Column="3" Grid.Row="7" Click="Button_Click"/>
     </Grid>
 </UserControl>

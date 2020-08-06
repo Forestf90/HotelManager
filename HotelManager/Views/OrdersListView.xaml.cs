@@ -48,7 +48,23 @@ namespace HotelManager.Views
 
         private void orderUpdate_Click(object sender, RoutedEventArgs e)
         {
+            DisplayOrderModel selected = (DisplayOrderModel)ordersDataGrid.SelectedItem;
 
+            using (HotelContext hc = new HotelContext())
+            {
+                Room r = hc.Room.Where(x => x.Number == selected.RoomNumber).FirstOrDefault();
+
+
+                var update = hc.Order.Where(x => x.BookIn == selected.BookIn)
+                                    .Where(z => z.RoomId == r.Id).FirstOrDefault();
+
+                var client = hc.Client.Where(x => x.Id == update.ClientId).FirstOrDefault();
+
+                Window shell = Application.Current.MainWindow;
+
+                shell.DataContext = new AddOrderView(update, client.Email, r);
+
+            }
         }
     }
 }

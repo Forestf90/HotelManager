@@ -19,6 +19,14 @@ namespace HotelManager.ViewModels
         {
             GetClients();
             GetRooms();
+            _bookIn = DateTime.Today;
+        }
+
+        public OrderAddViewModel(Order or, String orEmail, Room orNumber)
+        {
+            GetClients();
+            GetRooms();
+            FillUpdate(or, orEmail, orNumber);
         }
 
         private int _room;
@@ -76,7 +84,7 @@ namespace HotelManager.ViewModels
         }
 
 
-        private DateTime _bookIn = DateTime.Today;
+        private DateTime _bookIn;
 
         [Required(ErrorMessage = "Field cannot be empty")]
         public DateTime BookIn 
@@ -118,6 +126,17 @@ namespace HotelManager.ViewModels
                 Clients = hc.Client.ToList();
             }
         }
+
+        private void FillUpdate(Order or, String orEmail, Room orNumber)
+        {
+            //_bookOut = or.BookOut;
+            //BookIn = or.BookIn;
+            Guests = or.GuestsNumber;
+            Price = (float) or.Price;
+            Client = orEmail;
+            _room = orNumber.Number;
+
+        } 
 
         private void ValidationProperty<T>(T value, string name)
         {

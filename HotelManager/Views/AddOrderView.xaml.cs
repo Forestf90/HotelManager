@@ -22,10 +22,22 @@ namespace HotelManager.Views
     /// </summary>
     public partial class AddOrderView : UserControl
     {
+        private Order update;
         public AddOrderView()
         {
             InitializeComponent();  
             DataContext = new OrderAddViewModel();
+        }
+
+        public AddOrderView(Order or, string email, Room number)
+        {
+            InitializeComponent();
+            update = or;
+            DataContext = new OrderAddViewModel(or, email, number);
+            buttonAdd.Content = "Update";
+            DateInPic.SelectedDate = or.BookIn;
+            DateOutPic.SelectedDate = or.BookOut;
+            RoomCombo.SelectedItem = number;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -36,8 +48,8 @@ namespace HotelManager.Views
                 string clientEmail = ClientCombo.Text;
                 int guest = Convert.ToInt32(GuestText.Text);
                 float price = float.Parse(PriceText.Text);
-                DateTime dateIn = (DateTime)DateIn.SelectedDate;
-                DateTime dateOut = (DateTime)DateOut.SelectedDate;
+                DateTime dateIn = (DateTime)DateInPic.SelectedDate;
+                DateTime dateOut = (DateTime)DateOutPic.SelectedDate;
 
                 if (dateIn >= dateOut || dateIn < DateTime.Today)
                 {
